@@ -3,9 +3,7 @@
 #include <string>
 #include <vector>
 #include <array>
-#include <deque>
 #include <__msvc_ostream.hpp>
-#include <unordered_map>
 #include <cstdint>
 
 using namespace std;
@@ -19,12 +17,13 @@ struct HistoryEntry {
     uint8_t     toCell;
     bool        isJump;
     vector<pair<uint8_t,uint8_t>> flips;
-    uint64_t    prevHash;             // <--- добавили для отката хеша
+    uint64_t    prevHash;             
 };
 
-array<uint8_t, N*N> board;              // 0 - пусто, 1 - игрок1, 2 - игрок2
-uint8_t             myPlayer = 1;       // 1 или 2
+array<uint8_t, N*N> board;              // 0 - empty, 1 - player 1, 2 - player 2
+uint8_t             myPlayer = 1;       
 uint8_t             oppPlayer = 2;
+uint8_t             pieceCount[3] = {0, 0, 0};
 #ifdef DepthM
 uint8_t             maxDepth = 6;
 #else
@@ -61,15 +60,23 @@ static void initZobrist(){
 }
 
 // Recompute hash if needed
-static uint64_t recomputeHash(){
-    uint64_t h=0;
-    for(uint8_t i=0;i<N*N;++i){
-        uint8_t v = board[i]; 
+static uint64_t recomputeHash() {
+    uint64_t h = 0;
+    pieceCount[0] = pieceCount[1] = pieceCount[2] = 0;
+    for (uint8_t i = 0; i < N * N; ++i)
+    {
+        uint8_t v = board[i];
+        ++pieceCount[v];
         h ^= Z_cell[i][v];
     }
     currentHash = h;
     return h;
 }
+
+inline uint8_t countPieces(uint8_t player) { return pieceCount[player]; }
+
+inline uint8_t countEmpty() { return pieceCount[0]; }
+
 
 static inline uint64_t posKey(uint8_t player){
     return currentHash ^ (player==2 ? Z_side : 0ULL);
@@ -221,17 +228,23 @@ void applyMove(uint8_t player, const Move &mv, HistoryEntry &h)
     if (h.isJump)
     {
         currentHash ^= Z_cell[mv.fromCell][board[mv.fromCell]];
+        --pieceCount[board[mv.fromCell]];   
         board[mv.fromCell] = 0;
+        ++pieceCount[0];
         currentHash ^= Z_cell[mv.fromCell][board[mv.fromCell]];
 
         currentHash ^= Z_cell[mv.toCell][board[mv.toCell]];
+        --pieceCount[board[mv.toCell]];     
         board[mv.toCell] = player;
+        ++pieceCount[player];
         currentHash ^= Z_cell[mv.toCell][board[mv.toCell]];
     }
     else
     {
         currentHash ^= Z_cell[mv.toCell][board[mv.toCell]];
+        --pieceCount[board[mv.toCell]];     
         board[mv.toCell] = player;
+        ++pieceCount[player];
         currentHash ^= Z_cell[mv.toCell][board[mv.toCell]];
     }
 
@@ -252,7 +265,9 @@ void applyMove(uint8_t player, const Move &mv, HistoryEntry &h)
                 h.flips.push_back({idx, board[idx]});
                 
                 currentHash ^= Z_cell[idx][board[idx]];
+                --pieceCount[board[idx]];           // opp -> player
                 board[idx] = player;
+                ++pieceCount[player];
                 currentHash ^= Z_cell[idx][board[idx]];
             }
         }
@@ -271,7 +286,9 @@ void undoLast()
     // undo flips
     for (auto &p : h.flips) {
         currentHash ^= Z_cell[p.first][board[p.first]];
-        board[p.first] = p.second;
+        --pieceCount[board[p.first]];       
+        board[p.first] = p.second;          
+        ++pieceCount[board[p.first]];
         currentHash ^= Z_cell[p.first][board[p.first]];
     }
 
@@ -279,32 +296,28 @@ void undoLast()
     if (h.isJump)
     {
         currentHash ^= Z_cell[h.toCell][board[h.toCell]];
+        --pieceCount[board[h.toCell]];      
         board[h.toCell] = 0;
+        ++pieceCount[0];
         currentHash ^= Z_cell[h.toCell][board[h.toCell]];
-        
+
         currentHash ^= Z_cell[h.fromCell][board[h.fromCell]];
+        --pieceCount[board[h.fromCell]];    
         board[h.fromCell] = h.player;
+        ++pieceCount[h.player];
         currentHash ^= Z_cell[h.fromCell][board[h.fromCell]];
     }
     else
     {
         currentHash ^= Z_cell[h.toCell][board[h.toCell]];
+        --pieceCount[board[h.toCell]];      
         board[h.toCell] = 0;
+        ++pieceCount[0];
         currentHash ^= Z_cell[h.toCell][board[h.toCell]];
     }
 }
 
 #pragma region Heuristics
-
-// Returns player pieces count
-uint8_t countPieces(uint8_t player) {
-    uint8_t cnt = 0;
-    for (uint8_t i = 0; i < N*N; ++i)
-        if (board[i] == player)
-            ++cnt;
-    
-    return cnt;
-}
 
 static const int8_t D1[8][2] = {{-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1}};
 
@@ -381,16 +394,6 @@ int liberties(int player){
         }
     }
     return sum;
-}
-
-uint8_t countEmpty() {
-    uint8_t cnt = 0;
-    for (uint8_t i = 0; i < N * N; ++i) {
-        if (board[i] == 0) {
-            ++cnt;
-        }
-    }
-    return cnt;
 }
 
 #pragma endregion 
