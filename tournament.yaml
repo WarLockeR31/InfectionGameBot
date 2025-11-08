@@ -1,0 +1,24 @@
+game: Инфекция
+timeout: 5m
+rounds: 1
+bots:
+  WeightX5:
+    cmd: InfectionGameBot\bin\Weightx5\Release\InfectionGameBot-Weightx5.exe
+  CoolBot:
+    cmd: InfectionGameBot\bin\Weightx10\Release\InfectionGameBot-Weightx10.exe
+  WeightX10+Front:
+    cmd: InfectionGameBot\bin\Weightx10+Front\Release\InfectionGameBot-Weightx10+Front.exe
+  WeightX10+Front+Vuln:
+    cmd: InfectionGameBot\bin\Weightx10+Front+Vuln\Release\InfectionGameBot-Weightx10+Front+Vuln.exe
+  Weightx5+Front+Vuln:
+    cmd: InfectionGameBot\bin\Weightx5+Front+Vuln\Release\InfectionGameBot-Weightx5+Front+Vuln.exe
+  WeightX10+Front+Vuln+Liber:
+    cmd: InfectionGameBot\bin\Weightx10+Front+Vuln+Liber\Release\InfectionGameBot-Weightx10+Front+Vuln+Liber.exe
+  Weightx5+Front+Vuln+Liber:
+    cmd: InfectionGameBot\bin\Weightx5+Front+Vuln+Liber\Release\InfectionGameBot-Weightx5+Front+Vuln+Liber.exe
+  Weightx10+Front+Vuln+Liber+Phase:
+    cmd: InfectionGameBot\bin\Weightx10+Front+Vuln+Liber+Phase\Release\InfectionGameBot-Weightx10+Front+Vuln+Liber+Phase.exe
+  Weightx10+Phase:
+    cmd: InfectionGameBot\bin\Weightx10+Phase\Release\InfectionGameBot-Weightx10+Phase.exe  
+  Weightx5+Phase:
+    cmd: InfectionGameBot\bin\Weightx5+Phase\Release\InfectionGameBot-Weightx5+Phase.exe  

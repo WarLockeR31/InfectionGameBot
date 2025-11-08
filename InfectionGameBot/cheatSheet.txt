@@ -1,0 +1,19 @@
+botctl.exe test -r 10 x64\Debug\InfectionGameBot.exe
+
+InfectionGameBot\bin\Weightx10+Phase\Release\InfectionGameBot-Weightx10+Phase.exe
+
+botctl.exe -r 2 InfectionGameBot\x64\Release_Weightx5\InfectionGameBot.exe InfectionGameBot\x64\Release_Weightx10\InfectionGameBot.exe
+botctl.exe -r 2 InfectionGameBot\x64\Release_Weightx5\InfectionGameBot.exe InfectionGameBot\x64\Release\InfectionGameBot.exe
+botctl.exe -r 2 InfectionGameBot\x64\Release_Weightx10\InfectionGameBot.exe InfectionGameBot\x64\Release\InfectionGameBot.exe
+
+for /f "usebackq tokens=*" %i in (`
+  "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" ^
+    -latest -products * ^
+    -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 ^
+    -property installationPath
+`) do set VSINST=%i
+
+"C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\MSBuild.exe" InfectionGameBot\InfectionGameBot.vcxproj ^
+  /m /nr:false /t:BuildAll /p:Platform=x64 ^
+  /p:PlatformToolset=v143 ^
+  /p:VCToolsVersion=14.43.34808

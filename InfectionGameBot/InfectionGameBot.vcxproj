@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Flavor Condition="'$(Flavor)'==''">Base</Flavor>  
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetName>InfectionGameBot-$(Flavor)</TargetName>
+    <OutDir>$(ProjectDir)bin\$(Flavor)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Flavor)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/EHsc /O2 %(AdditionalOptions)</AdditionalOptions>
+      <WarningLevel>Level4</WarningLevel>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+
+	  <ProjectConfiguration Include="Release_Weightx5|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+	  <ProjectConfiguration Include="Release_Weightx10|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{A6607D36-E39C-4AD3-A185-A2D3B32AABD0}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>InfectionGameBot</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  
+  
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Weightx5|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Weightx5|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;Weightx5%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Weightx10|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Weightx10|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;Weightx10%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  
+  
+  <ItemGroup>
+    <ClCompile Include="InfectionGameBot.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="cheatSheet.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+
+  <Choose>
+    <When Condition="'$(Flavor)'=='Weightx10'">
+      <PropertyGroup><Depth>4</Depth></PropertyGroup>
+      <ItemDefinitionGroup>
+        <ClCompile>
+          <PreprocessorDefinitions>%(PreprocessorDefinitions);Weightx10;DepthM;Frontier</PreprocessorDefinitions>
+        </ClCompile>
+      </ItemDefinitionGroup>
+    </When>
+
+    <When Condition="'$(Flavor)'=='Weightx5'">
+      <PropertyGroup><Depth>6</Depth></PropertyGroup>
+      <ItemDefinitionGroup>
+        <ClCompile>
+          <PreprocessorDefinitions>%(PreprocessorDefinitions);Weightx5</PreprocessorDefinitions>
+        </ClCompile>
+      </ItemDefinitionGroup>
+    </When>
+
+    <When Condition="'$(Flavor)'=='Base'">
+      <PropertyGroup><Depth>8</Depth></PropertyGroup>
+      <ItemDefinitionGroup>
+        <ClCompile>
+          <PreprocessorDefinitions>%(PreprocessorDefinitions);</PreprocessorDefinitions>
+        </ClCompile>
+      </ItemDefinitionGroup>
+    </When>
+
+    <When Condition="'$(Flavor)'=='Weightx10+Front'">
+      <PropertyGroup><Depth>6</Depth></PropertyGroup>
+      <ItemDefinitionGroup>
+        <ClCompile>
+          <PreprocessorDefinitions>%(PreprocessorDefinitions);Weightx10;Frontier</PreprocessorDefinitions>
+        </ClCompile>
+      </ItemDefinitionGroup>
+    </When>
+
+    <When Condition="'$(Flavor)'=='Weightx5+Front'">
+      <PropertyGroup><Depth>6</Depth></PropertyGroup>
+      <ItemDefinitionGroup>
+        <ClCompile>
+          <PreprocessorDefinitions>%(PreprocessorDefinitions);Weightx5;Frontier</PreprocessorDefinitions>
+        </ClCompile>
+      </ItemDefinitionGroup>
+    </When>
+    <When Condition="'$(Flavor)'=='Weightx5+Front+Vuln'">
+      <PropertyGroup><Depth>6</Depth></PropertyGroup>
+      <ItemDefinitionGroup>
+        <ClCompile>
+          <PreprocessorDefinitions>%(PreprocessorDefinitions);Weightx10;Frontier;Vuln</PreprocessorDefinitions>
+        </ClCompile>
+      </ItemDefinitionGroup>
+    </When>
+    <When Condition="'$(Flavor)'=='Weightx10+Front+Vuln'">
+      <PropertyGroup><Depth>6</Depth></PropertyGroup>
+      <ItemDefinitionGroup>
+        <ClCompile>
+          <PreprocessorDefinitions>%(PreprocessorDefinitions);Weightx10;Frontier;Vuln</PreprocessorDefinitions>
+        </ClCompile>
+      </ItemDefinitionGroup>
+    </When>
+    <When Condition="'$(Flavor)'=='Weightx5+Front+Vuln+Liber'">
+      <PropertyGroup><Depth>6</Depth></PropertyGroup>
+      <ItemDefinitionGroup>
+        <ClCompile>
+          <PreprocessorDefinitions>%(PreprocessorDefinitions);Weightx10;Frontier;Vuln;Liber</PreprocessorDefinitions>
+        </ClCompile>
+      </ItemDefinitionGroup>
+    </When>
+    <When Condition="'$(Flavor)'=='Weightx10+Front+Vuln+Liber'">
+      <PropertyGroup><Depth>6</Depth></PropertyGroup>
+      <ItemDefinitionGroup>
+        <ClCompile>
+          <PreprocessorDefinitions>%(PreprocessorDefinitions);Weightx10;Frontier;Vuln;Liber</PreprocessorDefinitions>
+        </ClCompile>
+      </ItemDefinitionGroup>
+    </When>
+
+    <When Condition="'$(Flavor)'=='Weightx10+Phase'">
+      <PropertyGroup><Depth>4</Depth></PropertyGroup>
+      <ItemDefinitionGroup>
+        <ClCompile>
+          <PreprocessorDefinitions>%(PreprocessorDefinitions);Weightx10;Phase</PreprocessorDefinitions>
+        </ClCompile>
+      </ItemDefinitionGroup>
+    </When>
+    <When Condition="'$(Flavor)'=='Weightx5+Phase'">
+      <PropertyGroup><Depth>4</Depth></PropertyGroup>
+      <ItemDefinitionGroup>
+        <ClCompile>
+          <PreprocessorDefinitions>%(PreprocessorDefinitions);Weightx5;Phase</PreprocessorDefinitions>
+        </ClCompile>
+      </ItemDefinitionGroup>
+    </When>
+    <When Condition="'$(Flavor)'=='Weightx10+Front+Vuln+Liber+Phase'">
+      <PropertyGroup><Depth>6</Depth></PropertyGroup>
+      <ItemDefinitionGroup>
+        <ClCompile>
+          <PreprocessorDefinitions>%(PreprocessorDefinitions);Weightx10;Frontier;Vuln;Liber;Phase</PreprocessorDefinitions>
+        </ClCompile>
+      </ItemDefinitionGroup>
+    </When>
+    <When Condition="'$(Flavor)'=='Weightx10+Front+Vuln+Liber+Phase+Cand'">
+      <PropertyGroup><Depth>4</Depth></PropertyGroup>
+      <ItemDefinitionGroup>
+        <ClCompile>
+          <PreprocessorDefinitions>%(PreprocessorDefinitions);Weightx10;Phase;Cand</PreprocessorDefinitions>
+        </ClCompile>
+      </ItemDefinitionGroup>
+    </When>
+  </Choose>
+  
+  <ItemGroup>
+    <MyFlavors Include="Base;Weightx5;Weightx10;Weightx10+Front;Weightx5+Front;Weightx5+Front+Vuln;Weightx10+Front+Vuln;Weightx5+Front+Vuln+Liber;Weightx10+Front+Vuln+Liber;Weightx10+Front+Vuln+Liber+Phase;Weightx10+Phase;Weightx5+Phase;Weightx10+Front+Vuln+Liber+Phase+Cand" />
+  </ItemGroup>
+  
+  <Target Name="BuildAll">
+    <MSBuild Projects="$(MSBuildProjectFile)"
+		     Targets="Build"
+		     Properties="Configuration=Release;Platform=x64;Flavor=%(MyFlavors.Identity)" />
+  </Target>
+</Project>

@@ -1,6 +1,11 @@
 # Prerequisites
 *.d
 
+/bin/
+/obj/
+/**/bin/
+/**/obj/
+
 # Compiled Object files
 *.slo
 *.lo
@@ -39,3 +44,48 @@
 
 # debug information files
 *.dwo
+
+
+############################
+# JetBrains Rider / CLion  #
+############################
+
+# Проще всего игнорировать весь проект IDE
+.idea/
+# Старые форматы/модули
+*.iws
+*.ipr
+*.iml
+# Логи и дампы JBR (редко, но появляются)
+hs_err_pid*.log
+
+# Каталоги сборки, которые создаёт Rider/CLion
+cmake-build-*/
+build/
+_build/
+out/
+
+# Временные/генерируемые CMake-файлы
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+cmake_install.cmake
+install_manifest.txt
+
+# Ninja
+build.ninja
+*.ninja
+.ninja_deps
+.ninja_log
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Редакторы
+*~
+*.swp
